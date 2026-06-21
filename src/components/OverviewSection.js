@@ -7,7 +7,7 @@ function OverviewSection({ metrics }) {
   }
 
   return (
-    <section className="overview-section" role="region" aria-label="Overview metrics">
+    <section className="overview-section" aria-label="Overview metrics">
       <h2>Overview</h2>
       <div className="metrics-grid">
         {metrics.map((metric) => (
