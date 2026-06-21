@@ -1,0 +1,138 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8f0 100%);
+}
+
+.login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-brand {
+  font-size: 28px;
+  color: #5856d6;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.login-tagline {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.mock-api-banner {
+  background-color: #f0f8f0;
+  border: 1px solid #c8e6c9;
+  color: #2e7d32;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #5856d6;
+}
+
+.signin-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #5856d6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signin-button:hover:not(:disabled) {
+  background-color: #4741b8;
+}
+
+.signin-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background-color: #fee;
+  color: #c33;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.diagnostics-link-container {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mock-api-toggle-btn {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.mock-api-toggle-btn:hover {
+  background-color: #e8e8e8;
+  border-color: #5856d6;
+  color: #5856d6;
+}
+
+.diagnostics-link {
+  color: #5856d6;
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.3s;
+}
+
+.diagnostics-link:hover {
+  color: #4741b8;
+  text-decoration: underline;
+}
