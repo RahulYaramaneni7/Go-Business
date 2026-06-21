@@ -5,6 +5,7 @@ A modern, responsive web-based referral management system built with React. User
 ## Features
 
 - **User Authentication**: Secure login with JWT token-based authentication
+- **Mock API**: Built-in test data for development and deployment without external API dependency
 - **Protected Routes**: Access control with automatic redirect to login for unauthorized users
 - **Referral Dashboard**: Overview of metrics, service summary, and comprehensive referrals table
 - **Search & Filter**: Search referrals by name or service

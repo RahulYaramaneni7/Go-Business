@@ -46,8 +46,6 @@ function ReferralDetailsPage() {
       
       if (err.response?.status === 401 || err.response?.status === 403) {
         setError('Session expired. Please log in again.');
-      } else if (err.code === 'ECONNABORTED' || !err.response) {
-        setError('Connection timeout. Please try again.');
       } else {
         setError('Referral not found');
       }

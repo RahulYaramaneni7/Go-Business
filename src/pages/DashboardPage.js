@@ -59,12 +59,8 @@ function DashboardPage() {
       } else if (err.response?.status === 403) {
         setError('Access denied. Please log in again.');
         setTimeout(() => navigate('/login'), 2000);
-      } else if (err.code === 'ECONNABORTED' || !err.response) {
-        setError('Connection timeout. Please check your internet and try again.');
       } else {
-        const errorMessage = err.response?.data?.message || err.message || 'Failed to load referrals';
-        const status = err.response?.status ? ` (${err.response.status})` : '';
-        setError(`${errorMessage}${status}`);
+        setError('Failed to load referrals. Please try again.');
       }
     } finally {
       setLoading(false);

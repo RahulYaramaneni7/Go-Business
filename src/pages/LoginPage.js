@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { apiService, toggleMockApi, isMockApiEnabled } from '../services/api';
+import { apiService } from '../services/api';
 import '../styles/LoginPage.css';
 
 function LoginPage() {
@@ -9,7 +9,6 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [useMockApi, setUseMockApi] = useState(isMockApiEnabled());
   const navigate = useNavigate();
 
   // Redirect to dashboard if already logged in
@@ -18,11 +17,6 @@ function LoginPage() {
       navigate('/');
     }
   }, [navigate]);
-
-  const handleToggleMockApi = () => {
-    toggleMockApi(!useMockApi);
-    setUseMockApi(!useMockApi);
-  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -46,34 +40,12 @@ function LoginPage() {
         setError('Login failed. Invalid response from server.');
       }
     } catch (err) {
-      console.error('Login error details:', {
-        message: err.message,
-        code: err.code,
-        status: err.response?.status,
-        statusText: err.response?.statusText,
-        data: err.response?.data,
-        fullError: err
-      });
+      console.error('Login error:', err);
       
-      // Specific error handling
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
-      } else if (err.response?.status === 401) {
-        setError('Invalid email or password');
-      } else if (err.response?.status === 400) {
-        setError('Invalid request. Please check your email and password.');
-      } else if (err.response?.status === 403) {
-        setError('Access forbidden. Please try again.');
-      } else if (err.code === 'ECONNABORTED') {
-        setError('Request timeout. The server is taking too long to respond. Please try again.');
-      } else if (err.code === 'ENOTFOUND' || err.code === 'ECONNREFUSED') {
-        setError('Cannot reach the server. Please check if the API server is running.');
-      } else if (!err.response && err.message === 'timeout of 15000ms exceeded') {
-        setError('Connection timeout. The server is not responding. Please try again in a few moments.');
-      } else if (!err.response) {
-        setError('Network error. Please check your internet connection and ensure the API server is accessible.');
       } else {
-        setError(`Error: ${err.response?.statusText || err.message}`);
+        setError('Login failed. Please try again.');
       }
     } finally {
       setLoading(false);
@@ -85,12 +57,6 @@ function LoginPage() {
       <div className="login-card">
         <h1 className="login-brand">Go Business</h1>
         <p className="login-tagline">Sign in to open your referral dashboard.</p>
-
-        {useMockApi && (
-          <div className="mock-api-banner">
-            ✅ Using Mock API - Test data enabled
-          </div>
-        )}
 
         {error && <div className="error-message">{error}</div>}
 
@@ -121,15 +87,6 @@ function LoginPage() {
             {loading ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
-
-        <div className="diagnostics-link-container">
-          <button type="button" className="mock-api-toggle-btn" onClick={handleToggleMockApi}>
-            {useMockApi ? '🌐 Use Real API' : '✅ Use Mock API'}
-          </button>
-          <Link to="/diagnostics" className="diagnostics-link">
-            Having connection issues? Run diagnostics →
-          </Link>
-        </div>
       </div>
     </div>
   );
